@@ -49,8 +49,6 @@ class Graphing:
             else:
                 color_map.append("blue")
         return color_map
-        # for state in solution:
-            # self.g.nodes[state]['color']= "red"
 
     def draw_graph(self, solution, figname):
         pos = nx.get_node_attributes(self.g, 'pos')
@@ -59,12 +57,10 @@ class Graphing:
         labels = nx.get_edge_attributes(self.g, 'label')
         weights = nx.get_edge_attributes(self.g, 'weight')
 
-        # node_col = ['darkturquoise' if not node in solution else 'peru' for node in self.g.nodes()]
         node_col = self.color(solution);
 
         nx.draw_networkx_edge_labels(self.g, pos, edge_labels=labels, label_pos=0.6)
         nx.draw_networkx_edge_labels(self.g, pos, edge_labels=weights, label_pos=0.3)
-        # nx.draw_networkx_nodes(self.g, pos, node_size=[len(v) * 700 for v in self.g.nodes()],)
         nx.draw_networkx(self.g, pos, node_color=node_col, node_size=[len(v) * 700 for v in self.g.nodes()])
 
         ax = plt.gca()
