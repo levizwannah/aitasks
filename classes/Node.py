@@ -5,6 +5,8 @@ class Node:
         self.parent = parent
         self.problem = problem
         self.action = action
-        if(not parent):
+        if(parent == None):
             self.state = problem.initial_state
+        else:
+            self.state = action.dest
     

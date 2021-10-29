@@ -1,12 +1,16 @@
 from classes.Graphing import Graphing
 from classes.Problem import Problem
+from classes.ai import greedy_best_first_search
 
-graph = Graphing().get_graph()
-print(graph)
+print( greedy_best_first_search(Problem("SportsComplex", "ParkingLot")))
 
-prob = Problem("SportsComplex", "ParkingLot")
+# graph = Graphing().get_graph()
+# print(graph)
 
-for a in prob.get_actions("Siwaka"):
-    print(a.dest)
-print(a.dest for a in prob.get_actions("Siwaka"))
+# prob = Problem("SportsComplex", "ParkingLot")
+
+# for a in prob.get_actions("Siwaka"):
+#     print(a.dest)
+# print(a.dest for a in prob.get_actions("Siwaka"))
+
 
