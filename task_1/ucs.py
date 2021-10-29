@@ -1,6 +1,6 @@
 import heapq
-import main as main
-
+import graph_ucs as main
+from classes.Problem import Problem
 
 def uniformCostSearch(g, start, finish):
     frontier = []
@@ -48,4 +48,8 @@ def uniformCostSearch(g, start, finish):
 
 
 Solution = uniformCostSearch(main.g, "SportsComplex", "ParkingLot")
+print(Solution[2])
 print("SOLUTION: {}".format(Solution))
+
+problem = Problem("SportsComplex", "ParkingLot")
+problem.graphing.draw_graph(Solution[2], "UCS.png")

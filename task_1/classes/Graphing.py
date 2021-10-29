@@ -3,7 +3,8 @@ import networkx as nx
 # importing matplotlib.pyplot
 import matplotlib.pyplot as plt
 
-from matplotlib.pyplot import figure
+from matplotlib.pyplot import figimage, figure
+
 
 class Graphing:
     def __init__(self):
@@ -40,20 +41,36 @@ class Graphing:
     def get_graph(self):
         return self.g
 
-    def draw_graph(self):
+    def color(self, solution):
+        color_map = []
+        for node in self.g.nodes():
+            if(node in solution):
+                color_map.append("red")
+            else:
+                color_map.append("blue")
+        return color_map
+        # for state in solution:
+            # self.g.nodes[state]['color']= "red"
+
+    def draw_graph(self, solution, figname):
         pos = nx.get_node_attributes(self.g, 'pos')
         nx.draw(self.g, pos, with_labels=1)
 
         labels = nx.get_edge_attributes(self.g, 'label')
         weights = nx.get_edge_attributes(self.g, 'weight')
+
+        # node_col = ['darkturquoise' if not node in solution else 'peru' for node in self.g.nodes()]
+        node_col = self.color(solution);
+
         nx.draw_networkx_edge_labels(self.g, pos, edge_labels=labels, label_pos=0.6)
         nx.draw_networkx_edge_labels(self.g, pos, edge_labels=weights, label_pos=0.3)
-        nx.draw_networkx_nodes(self.g, pos, node_size=[len(v) * 700 for v in self.g.nodes()],)
+        # nx.draw_networkx_nodes(self.g, pos, node_size=[len(v) * 700 for v in self.g.nodes()],)
+        nx.draw_networkx(self.g, pos, node_color=node_col, node_size=[len(v) * 700 for v in self.g.nodes()])
 
         ax = plt.gca()
         ax.margins(0.08)
         plt.axis("off")
 
-        plt.savefig('fig.png')
+        plt.savefig(figname)
         plt.plot()
         plt.show()

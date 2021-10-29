@@ -1,9 +1,12 @@
 from classes.Graphing import Graphing
 from classes.Problem import Problem
-from classes.ai import greedy_best_first_search
+from classes.ai import greedy_best_first_search, solution
 
-print( greedy_best_first_search(Problem("SportsComplex", "ParkingLot")))
+problem = Problem("SportsComplex", "ParkingLot")
+solution = greedy_best_first_search(problem)
 
+# problem.graphing.color(solution)
+problem.graphing.draw_graph(solution, "Greedy-BFS.png")
 # graph = Graphing().get_graph()
 # print(graph)
 
